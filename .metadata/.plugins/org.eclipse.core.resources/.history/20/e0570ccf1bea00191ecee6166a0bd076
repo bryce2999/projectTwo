@@ -1,0 +1,17 @@
+
+public class PosAvg 
+{
+
+	
+	public PosAvg(String stID) 
+	{
+
+	}
+
+	public String indexOfStation() 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

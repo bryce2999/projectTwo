@@ -1,0 +1,18 @@
+import java.util.ArrayList;
+
+public class PosAvg 
+{
+
+	ArrayList<MesoStation> stations = new ArrayList<MesoStation>();
+	public PosAvg(String stID) 
+	{
+	
+	}
+
+	public String indexOfStation() 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

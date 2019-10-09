@@ -1,0 +1,13 @@
+
+public class MesoInherit {
+
+	public MesoInherit(MesoStation mesoStation) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String[] calAverage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

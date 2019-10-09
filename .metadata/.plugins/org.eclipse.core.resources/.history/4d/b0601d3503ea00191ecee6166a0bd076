@@ -1,0 +1,162 @@
+/**
+ * Lab 7
+ * 
+ * Implementation of the Restaurant abstract class. Stores and completes tickets based on a queue data structure.
+ * Tickets are treated in a FIFO manner. That is, the first ticket to be added to the restaurant is
+ * the first ticket to be completed. i.e. the QueueRestaurant behaves as one would expect a normal restaurant to.
+ * The first person to order food will be the first person served.
+ * 
+ * @author Stephen
+ * @version 2018-10-10
+ * 
+ * @modified by Em Evans
+ * @version 2019-30-09
+ */
+public class QueueRestaurant extends Restaurant{
+	
+	private Order[] orderList;
+	private int head;
+	private int tail;
+	private int numOrders;
+	private int maxSize;
+	
+	
+	//test main method
+	public static void main(String[] args)
+	{
+		QueueRestaurant qr = new QueueRestaurant(3);
+		qr.addOrder(new Order("burger",1));
+		qr.addOrder(new Order("burger 2",2));
+		qr.addOrder(new Order("burger 3",3));
+
+		qr.disposeCurrentTicket();	
+		System.out.println(qr.toString());
+		System.out.println("status: " + qr.getCurrentStatus());
+		
+		for(int i = 0; i < qr.orderList.length; i++)
+		{
+			if(qr.orderList[i] != null)
+			System.out.println("order: " +i + " , " + qr.orderList[i].toString());
+			if(qr.orderList[i] == null)
+			{
+				System.out.println("order: " + i +" , no order");
+			}
+		}
+	}
+	
+	@Override 
+	public String toString()
+	{
+		return "num orders:" +numOrders;
+		
+	}
+	
+	public QueueRestaurant(int maxSize)
+	{
+		//TODO: implement this
+		this.maxSize = maxSize;
+		orderList = new Order[maxSize];
+	}
+    /**
+     * Add an order to the restaurant. If there is no more room (number of tickets in the restaurant == maxSize of
+     * queueRestaurant), do not add an order and return false.
+     * 
+     * @param order The Order to be added.
+     * @return 
+     */
+	public boolean addOrder(Order order)
+	{
+		//TODO: implement this
+		boolean output;
+		if(numOrders == maxSize)
+		{
+			output = false;
+		}
+		else
+		{
+			output = true;
+			orderList[numOrders] = order;
+			numOrders++;
+		}
+		
+		return output;
+	}
+	
+    /**
+     * [Internal Code - This is not required by the specification but can be a useful construct.]
+     * 
+     */
+	@Override
+	protected Order completeOrder()
+	{
+		//TODO:implement this
+		//If no orders, return null
+	    //Get first submitted order
+		//Update the numOrders and tail and return
+		Order completedOrder = orderList[0];
+		if(numOrders == 0)
+		{
+			return null;
+		}
+		else
+		{
+			numOrders -= 1;
+			disposeCurrentTicket();
+			return orderList[0];
+		}
+		
+	}
+	
+	protected void disposeCurrentTicket()
+	{
+		Order[] temp = orderList.clone();
+		for(int i = 0; i <= numOrders -1; i++)
+		{
+			if(i != numOrders -1)
+			temp[i] = orderList[i+1];
+			if(i == numOrders -1)
+			{
+				temp[i] = null;
+			}
+		}
+		numOrders -= 1;
+		orderList = temp;
+	}
+	
+    /**
+     * Computes the number of orders in the restaurant that have not been completed.
+     * 
+     * @return the number of orders to complete.
+     */
+	@Override
+	protected int numberRemainingOrder()
+	{
+		//TODO: implement this
+		int numberOfOrders = 0;
+		for(int i = 0; i < orderList.length; ++i)
+		{
+			numberOfOrders++;
+		}
+		return numberOfOrders;
+	}
+    /**
+     * [Internal Code - This is not required by the specification but can be a useful construct.]
+     */
+	@Override
+	protected Order checkNextCompletedOrder()
+	{
+		//TODO: implement this
+		//check that there is at least one order
+		//if yes, return the next order to be completed
+		if(orderList.length > 0)
+		{
+			return orderList[0];
+		}
+		else
+		{
+			return null;
+		}
+	}
+
+
+}

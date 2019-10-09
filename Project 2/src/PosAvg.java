@@ -1,15 +1,71 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
-public class PosAvg {
+public class PosAvg 
+{
 
-	public PosAvg(String stID) 
+	private ArrayList<MesoStation> stations = new ArrayList<MesoStation>();
+	private final String FILENAME = "Mesonet.txt";
+	private final int ID_LENGTH = 4;
+	private int index;
+	private String ID = null; 
+	
+	public PosAvg(String stID) throws IOException 
 	{
-		// TODO Auto-generated constructor stub
+		
+		Read(FILENAME);
+		ID = stID;
 	}
 
-	public String indexOfStation() 
+	@Override 
+	public String toString()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		String output = "";
+		output += "This index is average of ";
+		for(int i = 1; i < 3; i++)
+		{
+			output += stations.get(index-i) +" and " + stations.get(index+i) + ", ";
+		}
+		output += "and so on.";
+		return output;	
+	}
+	public int indexOfStation() 
+	{
+		index = 0;
+		for(int i = 0; i < stations.size(); i++)
+		{
+			if(stations.get(i).getStID().equals(ID))
+			{
+				index = i;
+			}
+		}
+		return index;
 	}
 
+	
+	 private void Read(String filename) throws IOException
+	   {
+		    String string = "";
+		    String ID = null; 
+		    MesoStation station;
+		    
+	    	BufferedReader br = new BufferedReader(new FileReader(FILENAME));
+	    	for(int i = 0; i < 2; i++)
+	 	    {
+	 	    	br.readLine();
+	 	    }
+	    	
+			while((string = br.readLine()) != null)
+			{
+				for(int i = 1; i < 1 + ID_LENGTH; i++)
+				{
+					ID += string.charAt(i);
+				}
+				station = new MesoStation(ID);
+			    stations.add(station);
+			    ID = "";
+			} 	
+	   }
 }

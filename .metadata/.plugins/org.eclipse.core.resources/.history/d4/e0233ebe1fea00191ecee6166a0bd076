@@ -1,0 +1,55 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class PosAvg 
+{
+
+	private ArrayList<MesoStation> stations = new ArrayList<MesoStation>();
+	private final String FILENAME = "Mesonet.txt";
+	private final int ID_LENGTH = 4;
+	private String ID = null; 
+	
+	public PosAvg(String stID) throws IOException 
+	{
+		
+		Read(FILENAME);
+		for(int i = 0; i < stations.size(); i++)
+		{
+			System.out.println(stations.get(i).getStID());
+		}
+		ID = stID;
+	}
+
+	public String indexOfStation() 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	 private void Read(String filename) throws IOException
+	   {
+		    String string = "";
+		    String ID = null; 
+		    MesoStation station;
+		    
+	    	BufferedReader br = new BufferedReader(new FileReader(FILENAME));
+	    	for(int i = 0; i < ID_LENGTH; i++)
+	 	    {
+	 	    	br.readLine();
+	 	    }
+	    	
+			while((string = br.readLine()) != null)
+			{
+				for(int i = 2; i < 6; i++)
+				{
+					ID += string.charAt(i);
+				}
+				station = new MesoStation(ID);
+			    stations.add(station);
+			    ID = "";
+			} 	
+	   }
+}

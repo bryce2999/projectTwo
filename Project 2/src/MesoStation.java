@@ -14,4 +14,10 @@ public class MesoStation
 	public String getStID() {
 		return stID;
 	}
+	
+	@Override 
+	public String toString()
+	{
+		return stID;
+	}
 }

@@ -1,0 +1,188 @@
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+class HammingDist
+{
+   private int counterOne, counterTwo;
+   private int sameHamOne, sameHamTwo;
+   private int distance = 0;
+   private String str1, str2;
+   private ArrayList<String> stations = new ArrayList<String>();
+   final String FILENAME = "Mesonet.txt";
+
+   //a method to make a copy of the data in the mesonet file and create an arraylist of stations
+   /*
+    * A method to read the mesonet.txt file and keep a copy of all station ids
+    * @Param filename a string specifying which file to read
+    */
+   private void Read(String filename) throws IOException
+   {
+	    String str = "";
+	    String ID = "";
+	    
+    	BufferedReader br = new BufferedReader(new FileReader(FILENAME));
+    	for(int i = 0; i < 6; i++)
+ 	    {
+ 	    	br.readLine();
+ 	    }
+    	
+		while((str = br.readLine()) != null)
+		{
+			for(int i = 4; i < 8; i++)
+			{
+				ID += str.charAt(i);
+			}
+		    stations.add(ID);
+		    ID = "";
+		}
+
+    	
+   }
+   
+   //determining the hamming distance of the two strings;
+   /*
+    * A method to determine the Hamming Distance between two strings
+    * @param stringOne the first string of two to compare
+    * @param stringTwo the second string of two to compare
+    */
+  public HammingDist(String stringOne, String stringTwo) 
+  {
+	   try {
+		Read(FILENAME);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+       str1 = stringOne;
+       str2 = stringTwo;
+       
+       //test to see if the lengths are the same
+       if(str1.length() != str2.length())
+       {
+    	   System.out.println("invalid id");
+    	   distance = -1;
+       }
+       else
+       {
+    	   for(int i = 0; i < stringOne.length(); i++)
+           {
+        	   if(str1.charAt(i) != str2.charAt(i))
+        	   {
+        		   distance++;
+        	   }
+           }
+       }   
+       getSameHamOne();
+       getSameHamTwo();
+  }
+   
+  //a method for getting the hamming distances from str1 for all other 
+  //stations and counting how many have a distance equal
+  //to the initial hamming distance of string1 and string2
+  
+  /*
+   * A method for getting the hamming distance between all stations and str1
+   * with a counter that increases as hamming distances equal to the initial distance are discovered
+   *
+   */
+  public void getSameHamOne()
+  {
+	  int count = 0;
+	  for(String s : stations)
+	  {
+		  count++;
+		  for(int innerI = 0; innerI < s.length(); innerI++)
+		  {
+			  if(str1.charAt(innerI) != s.charAt(innerI))
+			  {
+				  counterOne++;
+			  }
+		  }
+		  if(counterOne == distance)
+		  {
+			  //item had the same hamming distance as the original distance
+			  sameHamOne += 1;
+			  counterOne = 0;
+		  }
+		  else
+		  {
+			  counterOne = 0;
+		  }
+	  }
+  }
+  
+//a method for getting the hamming distances from str2 for all other 
+//stations and counting how many have a distance equal
+//to the initial hamming distance between string1 and string2
+  
+  /*
+   * A method for getting the hamming distance between all stations and str2
+   * with a counter that increases as hamming distances equal to the initial distance are discovered
+   * 
+   */
+  public void getSameHamTwo()
+  {
+	  int count = 0;
+	  for(String s : stations)
+	  {
+		  char[] arr = new char[s.length()];
+		  for(int i = 0; i < arr.length; i++)
+		  {
+			  arr[i] = s.charAt(i);
+		  }
+		  for(int i = 0; i < arr.length; i++)
+		  {
+			  if(str2.charAt(i)!=arr[i])
+			  {
+				  count++;
+				  if(count == distance)	
+				  {
+					  //item had the same hamming distance as original distance
+					  sameHamTwo++;
+				  }
+			  }	    
+		  }
+		  count = 0;
+	  }
+  }
+  
+  /*
+   * A method to print the data about str1 and str2
+   */
+  @Override
+  public String toString()
+  {
+   String output = "The Hamming Distance between Norman and " + str1+ " is "+distance+" and for " + str2+": " + distance+".";
+   output+= "\nFor "+str1+", number of stations with Hamming Distance "+distance +" is " + sameHamOne+", and" ;
+   output += "\nfor "+ str2 +", number of stations with Hamming Distance " + distance + " is " + sameHamTwo+".";
+   return output;
+
+  }
+
+  /*
+   * A method to return the list of stations help by ArrayList<Station> stations
+   * 
+   */
+public ArrayList<String> getStations() {
+	return stations;
+}
+
+
+class Station 
+{
+private String name;
+	
+	public Station(String name)
+	{
+		this.name = name;
+	}
+	
+	public String getName()
+	{
+		return name;
+	} 
+}
+}

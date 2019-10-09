@@ -1,0 +1,19 @@
+import java.util.ArrayList;
+
+public class PosAvg 
+{
+
+	ArrayList<MesoStation> stations = new ArrayList<MesoStation>();
+	final String FILENAME = "Mesonet.txt";
+	public PosAvg(String stID) 
+	{
+		
+	}
+
+	public String indexOfStation() 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
