@@ -1,24 +1,23 @@
 
 public class LetterAvg
 {
-	private PosAvg pa;
-	
+	try
+	{
+	PosAvg pa = new PosAvg("ACME");
+	}
+	catch (Exception e)
+	{
+		System.out.println("yikes...");
+	}
 	public LetterAvg(String letterAverage) 
 	{
 		// TODO Auto-generated constructor stub
-		try
-		{
-			pa = new PosAvg("ACME");
-		}
-		catch (Exception e)
-		{
-			System.out.println("yikes...");
-		}
+
 	}
 
 	public String numberOfStationWithLetterAvg() 
 	{
-		
+		return null;
 	}
 
 }

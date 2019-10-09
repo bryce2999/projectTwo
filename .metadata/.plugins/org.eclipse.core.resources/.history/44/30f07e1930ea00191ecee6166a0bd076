@@ -1,0 +1,16 @@
+
+public class LetterAvg {
+
+	public LetterAvg(char letterAverage) 
+	{
+		// TODO Auto-generated constructor stub
+		
+	}
+
+	public String numberOfStationWithLetterAvg() 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

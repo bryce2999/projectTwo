@@ -1,0 +1,16 @@
+
+public class LetterAvg  extends MesoInherit
+{
+
+	public LetterAvg(String letterAverage) 
+	{
+		// TODO Auto-generated constructor stub
+		super();
+	}
+
+	public String numberOfStationWithLetterAvg() 
+	{
+		return null;
+	}
+
+}

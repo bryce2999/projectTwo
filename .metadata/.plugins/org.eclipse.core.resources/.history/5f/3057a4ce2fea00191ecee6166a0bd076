@@ -47,7 +47,8 @@ public class MesoInherit
 	{
 		// TODO Auto-generated method stub
 		char toChar = (char)ceil;
-		return ""+toChar;
+		
+		return null;
 	}
 
 }

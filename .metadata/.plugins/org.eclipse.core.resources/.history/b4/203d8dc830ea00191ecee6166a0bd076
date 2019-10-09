@@ -14,11 +14,14 @@ public class LetterAvg
 		{
 			System.out.println("yikes...");
 		}
+		
+		
+
 	}
 
 	public String numberOfStationWithLetterAvg() 
 	{
-		
+		return null;
 	}
 
 }
