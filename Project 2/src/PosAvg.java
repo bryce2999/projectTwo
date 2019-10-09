@@ -12,11 +12,18 @@ public class PosAvg
 	private int index;
 	private String ID = null; 
 	
+	public static void main(String[] args) throws IOException
+	{
+		PosAvg ps = new PosAvg("OKCE");
+		System.out.println(ps.toString());
+	}
+	
+	
 	public PosAvg(String stID) throws IOException 
 	{
-		
 		Read(FILENAME);
 		ID = stID;
+		index = indexOfStation();
 	}
 
 	@Override 
@@ -26,7 +33,8 @@ public class PosAvg
 		output += "This index is average of ";
 		for(int i = 1; i < 3; i++)
 		{
-			output += stations.get(index-i) +" and " + stations.get(index+i) + ", ";
+			if(index != 0)
+			output += stations.get(index-i).toString() +" and " + stations.get(index+i).toString() + ", ";
 		}
 		output += "and so on.";
 		return output;	
@@ -66,6 +74,12 @@ public class PosAvg
 				station = new MesoStation(ID);
 			    stations.add(station);
 			    ID = "";
-			} 	
+			} 
+			br.close();
 	   }
+	 
+	 public ArrayList<MesoStation> getStationList()
+	 {
+		 return stations;
+	 }
 }

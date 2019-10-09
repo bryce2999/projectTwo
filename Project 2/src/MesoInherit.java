@@ -4,12 +4,24 @@ public class MesoInherit
 
 	private MesoStation station; 	
 	private char[] stationChars = new char[4];
+	private static int[] arr;
 	private int ceil;
+	
+	public static void main(String[] args)
+	{
+		MesoInherit mi = new MesoInherit(new MesoStation("OKCE"));
+		for(int i = 0; i < 3; i++)
+		{
+			System.out.println(arr[i]);
+		}
+	}
+	
 	
 	public MesoInherit(MesoStation mesoStation) 
 	{
 		// TODO Auto-generated constructor stub
 		station = mesoStation;
+		calAverage();
 	}
 
 	public int[] calAverage() 
@@ -40,14 +52,15 @@ public class MesoInherit
 		numArray[0] = ceil;
 		numArray[1] = floor;
 		numArray[2] = average;
+		arr = numArray;
 		return numArray;
 	}
 
-	public String letterAverage() 
+	public char letterAverage() 
 	{
 		// TODO Auto-generated method stub
 		char toChar = (char)ceil;
-		return ""+toChar;
+		return toChar;
 	}
 
 }
