@@ -1,0 +1,27 @@
+
+public class LetterAvg
+{
+	private PosAvg pa;
+	private String startWith;
+	
+	public LetterAvg(String letterAverage) 
+	{
+		// TODO Auto-generated constructor stub
+		try
+		{
+			pa = new PosAvg("ACME");
+		}
+		catch (Exception e)
+		{
+			System.out.println("yikes...");
+		}
+		
+		startWith = letterAverage;
+	}
+
+	public String numberOfStationWithLetterAvg() 
+	{
+		
+	}
+
+}

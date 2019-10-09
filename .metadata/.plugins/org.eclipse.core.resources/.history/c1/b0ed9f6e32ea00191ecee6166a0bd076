@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+
+public class LetterAvg
+{
+	private PosAvg pa;
+	private String startWith;
+	private ArrayList<MesoStation> stations; 
+	
+	public LetterAvg(String letterAverage) 
+	{
+		// TODO Auto-generated constructor stub
+		try
+		{
+			pa = new PosAvg("ACME");
+		}
+		catch (Exception e)
+		{
+			System.out.println("yikes...");
+		}
+		
+		startWith = letterAverage;
+	}
+
+	public String numberOfStationWithLetterAvg() 
+	{
+		stations = pa.getStationList();
+		for(int i = 0; i < stations.size(); i++)
+		{
+			if((stations.get(i)).toString().charAt(0) == (startWith).charAt(0))
+			{
+				
+			}
+		}
+		return null;
+	}
+
+}
